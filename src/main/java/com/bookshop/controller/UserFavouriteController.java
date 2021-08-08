@@ -1,0 +1,54 @@
+package com.bookshop.controller;
+
+import com.bookshop.dto.FavouriteBookDto;
+import com.bookshop.service.UserFavouriteService;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@Slf4j
+@RequestMapping("/favourite")
+public class UserFavouriteController {
+
+    private UserFavouriteService userFavouriteService;
+
+    public UserFavouriteController(UserFavouriteService userFavouriteService) {
+        this.userFavouriteService = userFavouriteService;
+    }
+
+    @ApiOperation("Add a book to favourite")
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('CUSTOMER')")
+    public ResponseEntity<String> addToFavourite(@RequestParam Integer userId, @RequestParam Integer bookId) {
+        log.info("Add Favourite Book with user id is {} and book id is {}", userId, bookId);
+        Boolean aBoolean = userFavouriteService.addToFavourite(userId, bookId);
+        return new ResponseEntity(aBoolean, HttpStatus.CREATED);
+    }
+
+    @ApiOperation("Remove a book from favourite")
+    @RequestMapping(value = "/remove", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('CUSTOMER')")
+    public ResponseEntity<String> removeFromFavourite(@RequestParam Integer userId, @RequestParam Integer bookId) {
+        log.info("Remove Favourite Book with user id is {} and book id is {}", userId, bookId);
+        Boolean aBoolean = userFavouriteService.removeFromFavourite(userId, bookId);
+        return new ResponseEntity(aBoolean, HttpStatus.CREATED);
+    }
+
+    @ApiOperation("Get All favourite books list")
+    @RequestMapping(value = "/books", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('CUSTOMER')")
+    public ResponseEntity<String> allFavouriteBooks(@RequestParam Integer userId) {
+        log.info("Favourite Books of user with user id  {}", userId);
+        List<FavouriteBookDto> favouriteBookDtoList = userFavouriteService.getFavouriteBooksList(userId);
+        return new ResponseEntity(favouriteBookDtoList, HttpStatus.CREATED);
+    }
+}

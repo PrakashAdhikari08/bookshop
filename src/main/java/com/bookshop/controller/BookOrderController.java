@@ -45,8 +45,7 @@ public class BookOrderController {
 
     @ApiOperation("Get Book Ordered for User")
     @RequestMapping(value = "/my-order/{userId}", method = RequestMethod.GET)
-    public ResponseEntity<List<BookOrderDto>> getCustomerAllOrders(
-            @PathVariable Integer userId) {
+    public ResponseEntity<List<BookOrderDto>> getCustomerAllOrders(@PathVariable Integer userId) {
             List<BookOrderDto> bookOrderDtos = bookOrderService.getCustomerAllOrder(userId);
 
             return new ResponseEntity(bookOrderDtos, HttpStatus.OK);
@@ -59,6 +58,22 @@ public class BookOrderController {
         List<BookOrderDto> bookOrderDtos = bookOrderService.getAllOrders();
 
         return new ResponseEntity(bookOrderDtos, HttpStatus.OK);
+    }
+
+    @ApiOperation("Confirm Order Only for Admin Use")
+    @RequestMapping(value = "/confirm-order/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<String> confirmOrder(@PathVariable Integer id){
+        String message = bookOrderService.confirmOrder(id);
+        return new ResponseEntity(message, HttpStatus.OK);
+    }
+
+    @ApiOperation("Cancel Order Only for Admin Use")
+    @RequestMapping(value = "/cancel-order/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<String> cancelOrder(@PathVariable Integer id){
+        String message = bookOrderService.cancelOrder(id);
+        return new ResponseEntity(message, HttpStatus.OK);
     }
 
     @ExceptionHandler(BookDoesNotExistException.class)

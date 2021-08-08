@@ -13,4 +13,8 @@ public interface BookOrderService {
     List<BookOrderDto> getCustomerAllOrder(Integer customerId);
 
     List<BookOrderDto> getAllOrders();
+
+    String confirmOrder(Integer id);
+
+    String cancelOrder(Integer id);
 }

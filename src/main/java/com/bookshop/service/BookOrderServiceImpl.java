@@ -70,11 +70,26 @@ public class BookOrderServiceImpl implements BookOrderService {
     @Override
     public List<BookOrderDto> getAllOrders() {
         log.info("Requested for All Order By ADMIN.");
-
         List<BookOrder> bookOrders = bookOrderRepository.findAll();
         List<BookOrderDto> bookOrderDtos = BookOrderMapper.toDtoList(bookOrders);
-
-
         return bookOrderDtos;
+    }
+
+    @Override
+    public String confirmOrder(Integer id) {
+        log.info("Confirm Booking Order for order id:{}",id);
+        BookOrder bookOrder = bookOrderRepository.getById(id);
+        bookOrder.setStatus(Status.COMPLETED);
+        bookOrderRepository.save(bookOrder);
+        return Status.COMPLETED.name();
+    }
+
+    @Override
+    public String cancelOrder(Integer id) {
+        log.info("Cancel Booking Order for order id:{}",id);
+        BookOrder bookOrder = bookOrderRepository.getById(id);
+        bookOrder.setStatus(Status.CANCELLED);
+        bookOrderRepository.save(bookOrder);
+        return Status.CANCELLED.name();
     }
 }

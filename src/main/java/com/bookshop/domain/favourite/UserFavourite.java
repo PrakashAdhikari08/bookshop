@@ -28,10 +28,6 @@ public class UserFavourite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "optimized-sequence")
     private Integer Id;
-
-
     private Integer userId;
-
-
     private Integer bookId;
 }
