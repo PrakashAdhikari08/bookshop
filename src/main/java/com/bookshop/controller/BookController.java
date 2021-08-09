@@ -13,13 +13,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/book")
 @Slf4j
-@CrossOrigin("http://localhost:3000")
 public class BookController {
 
     private BookService bookService;
@@ -31,34 +31,39 @@ public class BookController {
     @ApiOperation("Adding book by Admin")
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<String> addBook(@RequestBody BookDto bookDto) throws BookAlreadyExistException {
+    public ResponseEntity<BookDto> addBook(@RequestBody BookDto bookDto) throws BookAlreadyExistException {
         Book book = BookMapper.toEntity(bookDto);
         book.setIsDeleted(Boolean.FALSE);
-        Integer bookId = bookService.addBook(book);
-        return new ResponseEntity<>("Book Added with Id -> " + bookId, HttpStatus.CREATED);
+        BookDto bookDto1;
+        try {
+            bookDto1 = BookMapper.toDto(bookService.addBook(book));
+        }catch (BookAlreadyExistException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Book Name already registered");
+        }
+        return new ResponseEntity<>(bookDto1, HttpStatus.CREATED);
     }
 
     @ApiOperation("Remove Book By Admin")
     @PreAuthorize("hasAuthority('ADMIN')")
-    @RequestMapping(value = "/delete/{bookId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{bookId}", method = RequestMethod.DELETE)
     public ResponseEntity<String> removeBook(@PathVariable Integer bookId){
         Boolean deletedStatus = bookService.removeBook(bookId);
         if(deletedStatus)
             return new ResponseEntity<>("Book Deleted",HttpStatus.OK);
         else
-            return new ResponseEntity<>("Could not delete the book. The ID does not exist.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Could not delete the book. The Book does not exist.", HttpStatus.BAD_REQUEST);
     }
 
-    @ApiOperation("Get All Book By Admin")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @ApiOperation("Get All Book For All")
+//    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<List<BookDto>> getAllBooks(){
         return new ResponseEntity(bookService.getAllBooks(), HttpStatus.OK);
     }
 
-    @ExceptionHandler(BookAlreadyExistException.class)
-    public ResponseEntity<String> emailInuseException(){
-        log.error("Book Name already registered");
-        return new ResponseEntity<>("Book Name already registered", HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler(BookAlreadyExistException.class)
+//    public ResponseEntity<String> emailInuseException(){
+//        log.error("Book Name already registered");
+////        return new ResponseEntity<>("Book Name already registered", HttpStatus.BAD_REQUEST);
+//    }
 }

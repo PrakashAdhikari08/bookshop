@@ -46,8 +46,7 @@ public class LoginController {
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     @ApiOperation("login Url for any user")
-    @CrossOrigin("http://localhost:3000")
-    public JwtResponse authenticateUser(@RequestBody JwtRequest jwtRequest) throws Exception {
+    public JwtResponse authenticateUser(@RequestBody JwtRequest jwtRequest){
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -56,7 +55,7 @@ public class LoginController {
                     )
             );
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,"Invalid Credentials!!");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,"Invalid Credentials!!");
 //            throw new InvalidUserException("Invalid Credentials!!");
         }
 

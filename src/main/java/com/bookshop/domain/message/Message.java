@@ -1,5 +1,6 @@
 package com.bookshop.domain.message;
 
+import com.bookshop.domain.user.Role;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,9 +27,9 @@ public class Message {
 
     private String message;
 
-    private Integer fromUserId;
+    private Integer userId;
 
-    private Integer toUserId;
+    private Role sender;
 
     @CreationTimestamp
     private LocalDateTime dateTime;

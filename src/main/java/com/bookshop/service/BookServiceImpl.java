@@ -23,13 +23,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Integer addBook(Book book) throws BookAlreadyExistException {
+    public Book addBook(Book book) throws BookAlreadyExistException {
         if (bookRepository.findBookByBookName(book.getBookName()) != null)
             throw new BookAlreadyExistException("Book Already Exists");
 
         Book book1 = bookRepository.save(book);
         log.info("Booked saved with book name -> {}", book1.getBookName());
-        return book1.getId();
+        return book1;
 
     }
 
