@@ -2,7 +2,6 @@ package com.bookshop.dto;
 
 import com.bookshop.domain.book.Book;
 import com.bookshop.domain.shopping.Status;
-import com.bookshop.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
