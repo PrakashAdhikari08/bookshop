@@ -25,7 +25,7 @@ public class UserFavouriteController {
         this.userFavouriteService = userFavouriteService;
     }
 
-    @ApiOperation("Add a book to favourite")
+    @ApiOperation("Add a book to favourite Customer Only")
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('CUSTOMER')")
     public ResponseEntity<String> addToFavourite(@RequestParam Integer userId, @RequestParam Integer bookId) {
@@ -34,21 +34,21 @@ public class UserFavouriteController {
         return new ResponseEntity(aBoolean, HttpStatus.CREATED);
     }
 
-    @ApiOperation("Remove a book from favourite")
+    @ApiOperation("Remove a book from favourite Customer Only")
     @RequestMapping(value = "/remove", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('CUSTOMER')")
     public ResponseEntity<String> removeFromFavourite(@RequestParam Integer userId, @RequestParam Integer bookId) {
         log.info("Remove Favourite Book with user id is {} and book id is {}", userId, bookId);
         Boolean aBoolean = userFavouriteService.removeFromFavourite(userId, bookId);
-        return new ResponseEntity(aBoolean, HttpStatus.CREATED);
+        return new ResponseEntity(aBoolean, HttpStatus.OK);
     }
 
-    @ApiOperation("Get All favourite books list")
+    @ApiOperation("Get All favourite books list Customer Only")
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('CUSTOMER')")
     public ResponseEntity<String> allFavouriteBooks(@RequestParam Integer userId) {
         log.info("Favourite Books of user with user id  {}", userId);
         List<FavouriteBookDto> favouriteBookDtoList = userFavouriteService.getFavouriteBooksList(userId);
-        return new ResponseEntity(favouriteBookDtoList, HttpStatus.CREATED);
+        return new ResponseEntity(favouriteBookDtoList, HttpStatus.OK);
     }
 }

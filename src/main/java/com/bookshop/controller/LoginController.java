@@ -18,11 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @Slf4j
@@ -49,7 +46,7 @@ public class LoginController {
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     @ApiOperation("login Url for any user")
-    //@CrossOrigin("http://localhost:3000")
+    @CrossOrigin("http://localhost:3000")
     public JwtResponse authenticateUser(@RequestBody JwtRequest jwtRequest) throws Exception {
         try {
             authenticationManager.authenticate(
@@ -59,7 +56,8 @@ public class LoginController {
                     )
             );
         } catch (Exception e) {
-            throw new InvalidUserException("Invalid Credentials!!");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,"Invalid Credentials!!");
+//            throw new InvalidUserException("Invalid Credentials!!");
         }
 
         final UserDetails user = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
@@ -81,9 +79,9 @@ public class LoginController {
         return new JwtResponse(token, responseUser);
     }
 
-    @ExceptionHandler(InvalidUserException.class)
-    public ResponseEntity<String> emailInuseException() {
-        log.error("Invalid Credentials!!");
-        return new ResponseEntity<>("Invalid Credentials!!.", HttpStatus.UNAUTHORIZED);
-    }
+//    @ExceptionHandler(InvalidUserException.class)
+//    public ResponseEntity<String> emailInuseException() {
+//        log.error("Invalid Credentials!!");
+//        return new ResponseEntity<>("Invalid Credentials!!.", HttpStatus.UNAUTHORIZED);
+//    }
 }
