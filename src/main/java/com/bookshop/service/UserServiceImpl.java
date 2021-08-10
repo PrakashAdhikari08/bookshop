@@ -3,12 +3,14 @@ package com.bookshop.service;
 import com.bookshop.dao.UserRepository;
 import com.bookshop.domain.user.Role;
 import com.bookshop.domain.user.User;
+import com.bookshop.dto.UserDto;
 import com.bookshop.exception.EmailAlreadyRegisteredException;
+import com.bookshop.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -41,21 +43,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public void updateUser(User user, Integer userId) {
-        log.info("Updating profile for user with id -> {}", userId);
-        User user1 = userRepository.findById(userId).get();
-        if (user.getFirstName() != null)
-            user1.setFirstName(user.getFirstName());
-        if (user.getLastName() != null)
-            user1.setLastName(user.getLastName());
-        if (user.getAddress() != null)
-            user1.setAddress(user.getAddress());
-        if (user.getBirthDate() != null)
-            user1.setBirthDate(user.getBirthDate());
-        if (user.getGender() != null)
-            user1.setGender(user.getGender());
-        user1.setLastUpdated(LocalDateTime.now());
+    public UserDto updateUser(UserDto userDto) {
+        log.info("Updating profile for user with id -> {}", userDto.getId());
+        Optional<User> userOptional = userRepository.findById(userDto.getId());
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (userDto.getFirstName() != null)
+                user.setFirstName(userDto.getFirstName());
+            if (userDto.getLastName() != null)
+                user.setLastName(userDto.getLastName());
+            if (userDto.getAddress() != null)
+                user.setAddress(userDto.getAddress());
+            if (userDto.getBirthDate() != null)
+                user.setBirthDate(userDto.getBirthDate());
+            if (userDto.getGender() != null)
+                user.setGender(userDto.getGender());
+            return UserMapper.toDto(userRepository.save(user));
+        } else {
+            return null;
+        }
     }
 
     @Override

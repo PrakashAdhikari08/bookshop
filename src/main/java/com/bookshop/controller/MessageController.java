@@ -23,17 +23,17 @@ public class MessageController {
     }
 
     @ApiOperation("Send message for Both")
-    @RequestMapping(value="/send", method = RequestMethod.POST)
-    public ResponseEntity<Boolean> registerUser(@RequestBody Message message){
-        log.info("Send Message from {} ",message.getSender().toString());
+    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    public ResponseEntity<Boolean> registerUser(@RequestBody Message message) {
+        log.info("Send Message from {} ", message.getSender().toString());
         Boolean success = messageService.saveMessage(message);
         return new ResponseEntity<>(success, HttpStatus.OK);
     }
 
     @ApiOperation("Get message for Both")
-    @RequestMapping(value="/{userId}", method = RequestMethod.GET)
-    public ResponseEntity<List<Message>> getMessage(@PathVariable Integer userId){
-        log.info("Get Message for User with user id {} ",userId);
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<List<Message>> getMessage(@PathVariable Integer userId) {
+        log.info("Get Message for User with user id {} ", userId);
         List<Message> messageList = messageService.getAllMessage(userId);
         return new ResponseEntity<>(messageList, HttpStatus.OK);
     }

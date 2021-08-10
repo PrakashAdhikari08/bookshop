@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserLogMapper {
 
-    public static UserLogDto toDto(UserLog userLog){
+    public static UserLogDto toDto(UserLog userLog) {
         return UserLogDto.builder()
                 .name(userLog.getName())
                 .username(userLog.getUsername())
@@ -17,7 +17,7 @@ public class UserLogMapper {
                 .build();
     }
 
-    public static List<UserLogDto> toDtoList(List<UserLog> userLogs){
+    public static List<UserLogDto> toDtoList(List<UserLog> userLogs) {
         List<UserLogDto> userLogDtos = new ArrayList<>();
 
         userLogs.forEach(userLog -> userLogDtos.add(toDto(userLog)));

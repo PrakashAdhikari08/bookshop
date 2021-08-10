@@ -2,20 +2,10 @@ package com.bookshop.dto;
 
 import com.bookshop.domain.user.Gender;
 import com.bookshop.domain.user.Role;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.UpdateTimestamp;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -34,6 +24,7 @@ public class UserDto {
 
     private String address;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
     private Gender gender;
@@ -48,12 +39,10 @@ public class UserDto {
 
     @Setter(AccessLevel.NONE)
     private String password;
+    private Role role;
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password =
                 new BCryptPasswordEncoder().encode(password);
     }
-
-
-    private Role role;
 }

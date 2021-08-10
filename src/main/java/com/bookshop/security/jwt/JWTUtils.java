@@ -16,10 +16,8 @@ import java.util.function.Function;
 @Component
 public class JWTUtils implements Serializable {
 
-    private static final long serialVersionUID = 234234523523L;
-
     public static final long JWT_TOKEN_VALIDITY = 1 * 60 * 60;  // 5 hours of time
-
+    private static final long serialVersionUID = 234234523523L;
     @Value("${jwt.secret}")
     private String secretKey;
 

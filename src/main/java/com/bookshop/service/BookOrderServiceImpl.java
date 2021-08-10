@@ -6,16 +6,10 @@ import com.bookshop.domain.book.Book;
 import com.bookshop.domain.shopping.BookOrder;
 import com.bookshop.domain.shopping.Status;
 import com.bookshop.domain.user.User;
-import com.bookshop.dto.BookDto;
 import com.bookshop.dto.BookOrderDto;
 import com.bookshop.exception.BookDoesNotExistException;
-import com.bookshop.mapper.BookMapper;
 import com.bookshop.mapper.BookOrderMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,7 +71,7 @@ public class BookOrderServiceImpl implements BookOrderService {
 
     @Override
     public String confirmOrder(Integer id) {
-        log.info("Confirm Booking Order for order id:{}",id);
+        log.info("Confirm Booking Order for order id:{}", id);
         BookOrder bookOrder = bookOrderRepository.getById(id);
         bookOrder.setStatus(Status.COMPLETED);
         bookOrderRepository.save(bookOrder);
@@ -86,7 +80,7 @@ public class BookOrderServiceImpl implements BookOrderService {
 
     @Override
     public String cancelOrder(Integer id) {
-        log.info("Cancel Booking Order for order id:{}",id);
+        log.info("Cancel Booking Order for order id:{}", id);
         BookOrder bookOrder = bookOrderRepository.getById(id);
         bookOrder.setStatus(Status.CANCELLED);
         bookOrderRepository.save(bookOrder);

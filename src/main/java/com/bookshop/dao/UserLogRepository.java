@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface UserLogRepository extends JpaRepository <UserLog , Integer> {
+public interface UserLogRepository extends JpaRepository<UserLog, Integer> {
 
     List<UserLog> findAllByRoleOrderByLoginDateDescLoginTimeDesc(Role role);
 }

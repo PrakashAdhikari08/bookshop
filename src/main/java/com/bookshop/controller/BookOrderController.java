@@ -38,15 +38,15 @@ public class BookOrderController {
     @ApiOperation("Get Book Ordered for User")
     @RequestMapping(value = "/my-order/{userId}", method = RequestMethod.GET)
     public ResponseEntity<List<BookOrderDto>> getCustomerAllOrders(@PathVariable Integer userId) {
-            List<BookOrderDto> bookOrderDtos = bookOrderService.getCustomerAllOrder(userId);
+        List<BookOrderDto> bookOrderDtos = bookOrderService.getCustomerAllOrder(userId);
 
-            return new ResponseEntity(bookOrderDtos, HttpStatus.OK);
+        return new ResponseEntity(bookOrderDtos, HttpStatus.OK);
     }
 
     @ApiOperation("Get All Order Only for Admin Use")
     @RequestMapping(value = "/book/all", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<List<BookOrderDto>> getAllExistingOrders(){
+    public ResponseEntity<List<BookOrderDto>> getAllExistingOrders() {
         List<BookOrderDto> bookOrderDtos = bookOrderService.getAllOrders();
         return new ResponseEntity(bookOrderDtos, HttpStatus.OK);
     }
@@ -54,7 +54,7 @@ public class BookOrderController {
     @ApiOperation("Confirm Order Only for Admin Use")
     @RequestMapping(value = "/confirm-order/{id}", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<String> confirmOrder(@PathVariable Integer id){
+    public ResponseEntity<String> confirmOrder(@PathVariable Integer id) {
         String message = bookOrderService.confirmOrder(id);
         return new ResponseEntity(message, HttpStatus.OK);
     }
@@ -62,7 +62,7 @@ public class BookOrderController {
     @ApiOperation("Cancel Order Only for Admin Use")
     @RequestMapping(value = "/cancel-order/{id}", method = RequestMethod.GET)
 //    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<String> cancelOrder(@PathVariable Integer id){
+    public ResponseEntity<String> cancelOrder(@PathVariable Integer id) {
         String message = bookOrderService.cancelOrder(id);
         return new ResponseEntity(message, HttpStatus.OK);
     }
@@ -70,7 +70,7 @@ public class BookOrderController {
     @ExceptionHandler(BookDoesNotExistException.class)
     public ResponseEntity<String> emailInuseException() {
         log.error("Book Not Found in DB to Order");
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Book Not Found/Exist");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book Not Found/Exist");
 //        return new ResponseEntity<>("Book Not Found/Exist", HttpStatus.BAD_REQUEST);
     }
 

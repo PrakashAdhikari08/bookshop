@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BookOrderMapper {
 
-    public static BookOrderDto toDto(BookOrder bookOrder){
+    public static BookOrderDto toDto(BookOrder bookOrder) {
         return BookOrderDto.builder()
                 .orderId(bookOrder.getId())
                 .status(bookOrder.getStatus())
@@ -19,7 +19,7 @@ public class BookOrderMapper {
                 .build();
     }
 
-    public static List<BookOrderDto> toDtoList(List<BookOrder> bookOrders){
+    public static List<BookOrderDto> toDtoList(List<BookOrder> bookOrders) {
         List<BookOrderDto> bookOrderDtos = new ArrayList<>();
 
         bookOrders.forEach(bookOrder -> bookOrderDtos.add(toDto(bookOrder)));

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserFavouriteRepository extends JpaRepository<UserFavourite, Integer> {
 
-    UserFavourite getByBookIdAndUserId(Integer bookId,Integer userId);
+    UserFavourite getByBookIdAndUserId(Integer bookId, Integer userId);
 
     List<UserFavourite> getAllByUserId(Integer userId);
 }

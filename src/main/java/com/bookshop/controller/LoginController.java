@@ -6,7 +6,6 @@ import com.bookshop.domain.jwt.JwtResponse;
 import com.bookshop.domain.log.UserLog;
 import com.bookshop.domain.user.User;
 import com.bookshop.dto.ResponseUser;
-import com.bookshop.exception.InvalidUserException;
 import com.bookshop.security.CustomUserDetailsService;
 import com.bookshop.security.jwt.JWTUtils;
 import com.bookshop.service.UserLogService;
@@ -14,11 +13,13 @@ import com.bookshop.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
@@ -46,7 +47,7 @@ public class LoginController {
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     @ApiOperation("login Url for any user")
-    public JwtResponse authenticateUser(@RequestBody JwtRequest jwtRequest){
+    public JwtResponse authenticateUser(@RequestBody JwtRequest jwtRequest) {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -55,7 +56,7 @@ public class LoginController {
                     )
             );
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN,"Invalid Credentials!!");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid Credentials!!");
 //            throw new InvalidUserException("Invalid Credentials!!");
         }
 

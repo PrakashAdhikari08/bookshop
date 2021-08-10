@@ -15,8 +15,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
-
 @RestController
 @RequestMapping(value = "/user")
 @Slf4j
@@ -24,42 +22,46 @@ public class UserController {
 
     private UserService userService;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @ApiOperation("Register a new user")
-    @RequestMapping(value="/register", method = RequestMethod.POST)
-    public ResponseEntity<String> registerUser(@RequestBody UserDto userDto){
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
         User user = UserMapper.toEntity(userDto);
         user.setRole(Role.CUSTOMER);
         log.info("User received for register: {} {}", user.getFirstName(), user.getLastName());
-        Integer userId = userService.registerUser(user);
-        return new ResponseEntity<>("Successfully Registered with User Id -> "+ userId, HttpStatus.CREATED);
+        userService.registerUser(user);
+        return new ResponseEntity<>("Registered, Login with Credential!!", HttpStatus.CREATED);
     }
 
     @ApiOperation("Edit Profile By an User")
     @RequestMapping(value = "/profile/edit/{userId}", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateProfile(@RequestBody UserDto userDto, @PathVariable Integer userId){
-        User user = UserMapper.toEntity(userDto);
-        log.info("Updating the profile of the user -> {} {}", user.getFirstName(), user.getLastName());
-        userService.updateUser(user, userId);
-        log.info("Profile Updated for {} {}", user.getFirstName(), user.getLastName());
-        return new ResponseEntity<>("Successfully Updated profile", HttpStatus.CREATED);
+    public ResponseEntity<UserDto> updateProfile(@RequestBody UserDto userDto, @PathVariable Integer userId) {
+//        User user = UserMapper.toEntity(userDto);/
+//        log.info("Updating the profile of the user -> {} {}", userDto.getFirstName(), userDto.getLastName());
+        userDto.setId(userId);
+        UserDto userDto1 = userService.updateUser(userDto);
+        if (userDto1 == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Not Found with userId " + userId);
+        }
+        log.info("Profile Updated for {} {}", userDto1.getFirstName(), userDto1.getLastName());
+        return new ResponseEntity<>(userDto1, HttpStatus.OK);
     }
 
     @ApiOperation("Disable/Enable Customer By Admin")
     @RequestMapping(value = "/change-status/{customerId}", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<String> changeCustomerAccountStatus(@PathVariable Integer customerId, @RequestParam (name = "status" ,required = false, defaultValue = "false") Boolean status){
+    public ResponseEntity<String> changeCustomerAccountStatus(@PathVariable Integer customerId, @RequestParam(name = "status", required = false, defaultValue = "false") Boolean status) {
         String response = userService.changeStatus(customerId, status);
-        return new ResponseEntity<>("Account " + response + " for customer with id -> " + customerId, HttpStatus.OK);
+        return new ResponseEntity<>("Account " + response, HttpStatus.OK);
     }
 
     @ExceptionHandler(EmailAlreadyRegisteredException.class)
-    public ResponseEntity<String> emailInuseException(){
+    public ResponseEntity<String> emailInuseException() {
         log.error("Email already taken so try with new email address");
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Email already exits.");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already exits.");
 //        return new ResponseEntity<>("Email already in use.", HttpStatus.BAD_REQUEST);
     }
 }

@@ -3,12 +3,10 @@ package com.bookshop.controller;
 import com.bookshop.domain.book.Book;
 import com.bookshop.dto.BookDto;
 import com.bookshop.exception.BookAlreadyExistException;
-import com.bookshop.exception.EmailAlreadyRegisteredException;
 import com.bookshop.mapper.BookMapper;
 import com.bookshop.service.BookService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -37,8 +35,8 @@ public class BookController {
         BookDto bookDto1;
         try {
             bookDto1 = BookMapper.toDto(bookService.addBook(book));
-        }catch (BookAlreadyExistException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Book Name already registered");
+        } catch (BookAlreadyExistException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book Name already registered");
         }
         return new ResponseEntity<>(bookDto1, HttpStatus.CREATED);
     }
@@ -46,10 +44,10 @@ public class BookController {
     @ApiOperation("Remove Book By Admin")
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/delete/{bookId}", method = RequestMethod.DELETE)
-    public ResponseEntity<String> removeBook(@PathVariable Integer bookId){
+    public ResponseEntity<String> removeBook(@PathVariable Integer bookId) {
         Boolean deletedStatus = bookService.removeBook(bookId);
-        if(deletedStatus)
-            return new ResponseEntity<>("Book Deleted",HttpStatus.OK);
+        if (deletedStatus)
+            return new ResponseEntity<>("Book Deleted", HttpStatus.OK);
         else
             return new ResponseEntity<>("Could not delete the book. The Book does not exist.", HttpStatus.BAD_REQUEST);
     }
@@ -57,7 +55,7 @@ public class BookController {
     @ApiOperation("Get All Book For All")
 //    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<List<BookDto>> getAllBooks(){
+    public ResponseEntity<List<BookDto>> getAllBooks() {
         return new ResponseEntity(bookService.getAllBooks(), HttpStatus.OK);
     }
 

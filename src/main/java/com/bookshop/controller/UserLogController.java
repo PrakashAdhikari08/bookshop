@@ -1,9 +1,7 @@
 package com.bookshop.controller;
 
-import com.bookshop.domain.log.UserLog;
 import com.bookshop.dto.UserLogDto;
 import com.bookshop.service.UserLogService;
-import com.bookshop.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,7 +29,7 @@ public class UserLogController {
 
     @ApiOperation("Order a book at a time")
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
-    public ResponseEntity<List<UserLogDto>> getAllCustomerLogs(){
+    public ResponseEntity<List<UserLogDto>> getAllCustomerLogs() {
         List<UserLogDto> userLogDtos = userLogService.getAllCustomerLogs();
 
         return new ResponseEntity<>(userLogDtos, HttpStatus.OK);
@@ -39,13 +37,11 @@ public class UserLogController {
 
     @ApiOperation("Order a book at a time")
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public ResponseEntity<List<UserLogDto>> getAllAdminLogs(){
+    public ResponseEntity<List<UserLogDto>> getAllAdminLogs() {
         List<UserLogDto> userLogDtos = userLogService.getAllAdminLogs();
 
         return new ResponseEntity<>(userLogDtos, HttpStatus.OK);
     }
-
-
 
 
 }

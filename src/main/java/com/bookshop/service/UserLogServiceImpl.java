@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class UserLogServiceImpl implements UserLogService{
+public class UserLogServiceImpl implements UserLogService {
 
     private UserLogRepository userLogRepository;
 

@@ -13,13 +13,13 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class UserFavouriteServiceImpl implements UserFavouriteService{
+public class UserFavouriteServiceImpl implements UserFavouriteService {
 
     private UserFavouriteRepository userFavouriteRepository;
     private BookRepository bookRepository;
 
     public UserFavouriteServiceImpl(UserFavouriteRepository userFavouriteRepository, BookRepository bookRepository) {
-        this.userFavouriteRepository=userFavouriteRepository;
+        this.userFavouriteRepository = userFavouriteRepository;
         this.bookRepository = bookRepository;
     }
 
@@ -34,8 +34,8 @@ public class UserFavouriteServiceImpl implements UserFavouriteService{
 
     @Override
     public Boolean removeFromFavourite(Integer userId, Integer bookId) {
-        UserFavourite userFavourite = userFavouriteRepository.getByBookIdAndUserId(bookId,userId);
-        if(userFavourite!=null) userFavouriteRepository.delete(userFavourite);
+        UserFavourite userFavourite = userFavouriteRepository.getByBookIdAndUserId(bookId, userId);
+        if (userFavourite != null) userFavouriteRepository.delete(userFavourite);
         return Boolean.FALSE;
     }
 
@@ -45,7 +45,7 @@ public class UserFavouriteServiceImpl implements UserFavouriteService{
         List<FavouriteBookDto> favouriteBookDtoList = new ArrayList<>();
         userFavouriteList.forEach(userFavourite -> {
             Book book = bookRepository.getById(userFavourite.getBookId());
-            favouriteBookDtoList.add(new FavouriteBookDto(book.getId(),userId, book.getBookName(), book.getAuthorName(), book.getPrice()));
+            favouriteBookDtoList.add(new FavouriteBookDto(book.getId(), userId, book.getBookName(), book.getAuthorName(), book.getPrice()));
         });
         return favouriteBookDtoList;
     }

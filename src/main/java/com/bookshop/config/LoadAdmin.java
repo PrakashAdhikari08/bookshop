@@ -48,7 +48,7 @@ public class LoadAdmin implements CommandLineRunner {
             user1.setRole(Role.valueOf(line[7]));
             user1.setIsDisabled(false);
 
-            if(userRepository.findByEmail(user.getEmail()) != null)
+            if (userRepository.findByEmail(user.getEmail()) != null)
                 log.info("Admin already exist");
             else {
                 userRepository.save(user1);

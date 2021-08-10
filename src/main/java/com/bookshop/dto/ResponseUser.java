@@ -2,7 +2,6 @@ package com.bookshop.dto;
 
 import com.bookshop.domain.user.Gender;
 import com.bookshop.domain.user.Role;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

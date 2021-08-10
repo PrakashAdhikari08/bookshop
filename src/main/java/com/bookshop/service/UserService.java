@@ -1,6 +1,7 @@
 package com.bookshop.service;
 
 import com.bookshop.domain.user.User;
+import com.bookshop.dto.UserDto;
 
 public interface UserService {
 
@@ -8,7 +9,7 @@ public interface UserService {
 
     User findByEmail(String email);
 
-    void updateUser(User user, Integer userId);
+    UserDto updateUser(UserDto user);
 
     String changeStatus(Integer customerId, Boolean status);
 }

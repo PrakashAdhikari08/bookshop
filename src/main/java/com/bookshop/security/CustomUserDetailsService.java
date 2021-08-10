@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userService.findByEmail(email);
 
-        if(user == null || user.getIsDisabled())
+        if (user == null || user.getIsDisabled())
             throw new UsernameNotFoundException("User not found");
 
         user.setLastLoggedIn(LocalDateTime.now());
