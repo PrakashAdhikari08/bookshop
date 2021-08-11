@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MessageService {
 
-    Boolean saveMessage(Message message);
+    Message saveMessage(Message message);
 
     List<Message> getAllMessage(Integer userId);
 }

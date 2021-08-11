@@ -45,7 +45,7 @@ public class LoginController {
         this.userLogService = userLogService;
     }
 
-    @RequestMapping(value = "/user/login", method = RequestMethod.POST)
+    @RequestMapping(value = "api/user/login", method = RequestMethod.POST)
     @ApiOperation("login Url for any user")
     public JwtResponse authenticateUser(@RequestBody JwtRequest jwtRequest) {
         try {
@@ -57,7 +57,6 @@ public class LoginController {
             );
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid Credentials!!");
-//            throw new InvalidUserException("Invalid Credentials!!");
         }
 
         final UserDetails user = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
@@ -78,10 +77,4 @@ public class LoginController {
 
         return new JwtResponse(token, responseUser);
     }
-
-//    @ExceptionHandler(InvalidUserException.class)
-//    public ResponseEntity<String> emailInuseException() {
-//        log.error("Invalid Credentials!!");
-//        return new ResponseEntity<>("Invalid Credentials!!.", HttpStatus.UNAUTHORIZED);
-//    }
 }

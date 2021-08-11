@@ -16,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/book")
+@RequestMapping("api/book")
 @Slf4j
 public class BookController {
 
@@ -53,15 +53,9 @@ public class BookController {
     }
 
     @ApiOperation("Get All Book For All")
-//    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<List<BookDto>> getAllBooks() {
         return new ResponseEntity(bookService.getAllBooks(), HttpStatus.OK);
     }
 
-//    @ExceptionHandler(BookAlreadyExistException.class)
-//    public ResponseEntity<String> emailInuseException(){
-//        log.error("Book Name already registered");
-////        return new ResponseEntity<>("Book Name already registered", HttpStatus.BAD_REQUEST);
-//    }
 }

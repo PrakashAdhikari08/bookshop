@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/message")
+@RequestMapping(value = "api/message")
 @CrossOrigin("http://localhost:3000")
 @Slf4j
 public class MessageController {
@@ -24,9 +24,9 @@ public class MessageController {
 
     @ApiOperation("Send message for Both")
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    public ResponseEntity<Boolean> registerUser(@RequestBody Message message) {
+    public ResponseEntity<Message> registerUser(@RequestBody Message message) {
         log.info("Send Message from {} ", message.getSender().toString());
-        Boolean success = messageService.saveMessage(message);
+        Message success = messageService.saveMessage(message);
         return new ResponseEntity<>(success, HttpStatus.OK);
     }
 

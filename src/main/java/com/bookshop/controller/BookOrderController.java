@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @CrossOrigin("http://localhost:3000")
-@RequestMapping("/order")
+@RequestMapping("api/order")
 public class BookOrderController {
 
     private BookOrderService bookOrderService;
@@ -31,7 +31,7 @@ public class BookOrderController {
     @PreAuthorize("hasAuthority('CUSTOMER')")
     public ResponseEntity<String> orderABook(@RequestParam Integer userId, @RequestParam Integer bookId) {
         log.info("The user id is {} and book id is {}", userId, bookId);
-        Integer orderNumber = bookOrderService.orderABook(userId, bookId);
+        bookOrderService.orderABook(userId, bookId);
         return new ResponseEntity("Successfully Order", HttpStatus.CREATED);
     }
 
@@ -71,7 +71,6 @@ public class BookOrderController {
     public ResponseEntity<String> emailInuseException() {
         log.error("Book Not Found in DB to Order");
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book Not Found/Exist");
-//        return new ResponseEntity<>("Book Not Found/Exist", HttpStatus.BAD_REQUEST);
     }
 
 }

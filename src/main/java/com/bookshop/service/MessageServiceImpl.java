@@ -19,9 +19,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Boolean saveMessage(Message message) {
-        messageRepository.save(message);
-        return Boolean.TRUE;
+    public Message saveMessage(Message message) {
+        return messageRepository.save(message);
     }
 
     @Override

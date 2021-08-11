@@ -17,7 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "api/user")
 @Slf4j
 public class UserController {
 
@@ -70,11 +70,4 @@ public class UserController {
         UserDto response = userService.changeStatus(customerId, status);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
-//    @ExceptionHandler(EmailAlreadyRegisteredException.class)
-//    public ResponseEntity<String> emailInuseException() {
-//        log.error("Email already taken so try with new email address");
-//        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already exits.");
-////        return new ResponseEntity<>("Email already in use.", HttpStatus.BAD_REQUEST);
-//    }
 }

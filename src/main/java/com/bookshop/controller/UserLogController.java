@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @CrossOrigin("http://localhost:3000")
-@RequestMapping(value = "/logs")
+@RequestMapping(value = "api/logs")
 @PreAuthorize("hasAuthority('ADMIN')")
 public class UserLogController {
 
@@ -31,15 +31,13 @@ public class UserLogController {
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
     public ResponseEntity<List<UserLogDto>> getAllCustomerLogs() {
         List<UserLogDto> userLogDtos = userLogService.getAllCustomerLogs();
-
-        return new ResponseEntity<>(userLogDtos, HttpStatus.OK);
+         return new ResponseEntity<>(userLogDtos, HttpStatus.OK);
     }
 
     @ApiOperation("Order a book at a time")
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ResponseEntity<List<UserLogDto>> getAllAdminLogs() {
         List<UserLogDto> userLogDtos = userLogService.getAllAdminLogs();
-
         return new ResponseEntity<>(userLogDtos, HttpStatus.OK);
     }
 

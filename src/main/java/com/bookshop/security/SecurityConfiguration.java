@@ -36,15 +36,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers(
-                        "/user/register",
-                        "/book/all",
-                        "/user/login",
+                        "/api/user/register",
+                        "/api/book/all",
+                        "/api/user/login",
                         "/v2/api-docs",
                         "/configuration/ui",
                         "/swagger-resources/**",
                         "/configuration/security",
                         "/swagger-ui.html",
-                        "/webjars/**"
+                        "/webjars/**",
+                        "/","/login","/register","/forget-password",
+                        "/books","/customers","/orders","/user-log",
+                        "/profile","/change-password","/admin-message/**",
+                        "/user-message","/favorites-books","**.**"
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()
