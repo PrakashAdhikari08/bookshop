@@ -3,6 +3,8 @@ package com.bookshop.service;
 import com.bookshop.domain.user.User;
 import com.bookshop.dto.UserDto;
 
+import java.util.List;
+
 public interface UserService {
 
     Integer registerUser(User user);
@@ -11,5 +13,7 @@ public interface UserService {
 
     UserDto updateUser(UserDto user);
 
-    String changeStatus(Integer customerId, Boolean status);
+    UserDto changeStatus(Integer customerId, Boolean status);
+
+    List<UserDto> fetchAllCustomer();
 }

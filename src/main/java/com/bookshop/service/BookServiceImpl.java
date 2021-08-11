@@ -50,8 +50,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookDto> getAllBooks() {
         log.info("Fetching all the books.");
-        List<Book> books = bookRepository.findAll().stream().filter(book -> book.getIsDeleted() == false).collect(Collectors.toList());
-        List<BookDto> bookDtos = BookMapper.toDtoList(books);
+        List<Book> books = bookRepository.findAll();
+        List<BookDto> bookDtos = BookMapper.toDtoList(books.stream().filter(book -> book.getIsDeleted() == false).collect(Collectors.toList()));
         return bookDtos;
     }
 

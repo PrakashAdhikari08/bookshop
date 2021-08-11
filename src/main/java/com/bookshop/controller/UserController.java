@@ -4,7 +4,6 @@ package com.bookshop.controller;
 import com.bookshop.domain.user.Role;
 import com.bookshop.domain.user.User;
 import com.bookshop.dto.UserDto;
-import com.bookshop.exception.EmailAlreadyRegisteredException;
 import com.bookshop.mapper.UserMapper;
 import com.bookshop.service.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -32,7 +33,11 @@ public class UserController {
         User user = UserMapper.toEntity(userDto);
         user.setRole(Role.CUSTOMER);
         log.info("User received for register: {} {}", user.getFirstName(), user.getLastName());
-        userService.registerUser(user);
+        try {
+            userService.registerUser(user);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already exits.");
+        }
         return new ResponseEntity<>("Registered, Login with Credential!!", HttpStatus.CREATED);
     }
 
@@ -50,18 +55,26 @@ public class UserController {
         return new ResponseEntity<>(userDto1, HttpStatus.OK);
     }
 
+    @ApiOperation("All Customer User List")
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<List<UserDto>> getAllCustomer() {
+        List<UserDto> userDtoList = userService.fetchAllCustomer();
+        return new ResponseEntity<>(userDtoList, HttpStatus.OK);
+    }
+
     @ApiOperation("Disable/Enable Customer By Admin")
     @RequestMapping(value = "/change-status/{customerId}", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<String> changeCustomerAccountStatus(@PathVariable Integer customerId, @RequestParam(name = "status", required = false, defaultValue = "false") Boolean status) {
-        String response = userService.changeStatus(customerId, status);
-        return new ResponseEntity<>("Account " + response, HttpStatus.OK);
+    public ResponseEntity<UserDto> changeCustomerAccountStatus(@PathVariable Integer customerId, @RequestParam(name = "status", required = false, defaultValue = "false") Boolean status) {
+        UserDto response = userService.changeStatus(customerId, status);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @ExceptionHandler(EmailAlreadyRegisteredException.class)
-    public ResponseEntity<String> emailInuseException() {
-        log.error("Email already taken so try with new email address");
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already exits.");
-//        return new ResponseEntity<>("Email already in use.", HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler(EmailAlreadyRegisteredException.class)
+//    public ResponseEntity<String> emailInuseException() {
+//        log.error("Email already taken so try with new email address");
+//        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already exits.");
+////        return new ResponseEntity<>("Email already in use.", HttpStatus.BAD_REQUEST);
+//    }
 }

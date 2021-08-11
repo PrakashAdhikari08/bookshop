@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -66,15 +67,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public String changeStatus(Integer customerId, Boolean status) {
-        userRepository.findById(customerId).get().setIsDisabled(status);
-        return status ? "DISABLED" : "ACTIVATED";
+    public UserDto changeStatus(Integer customerId, Boolean status) {
+        User user = userRepository.findById(customerId).get();
+        user.setIsDisabled(!status);
+        return UserMapper.toDto(user);
+    }
+
+    @Override
+    public List<UserDto> fetchAllCustomer() {
+        List<User> userList = userRepository.findAllByRole(Role.CUSTOMER);
+        return UserMapper.toDtoList(userList);
     }
 
     private Integer generateResetToken() {
         Random random = new Random();
         int number = random.nextInt(999999);
-
         return Integer.valueOf(String.format("%06d", number));
     }
 }

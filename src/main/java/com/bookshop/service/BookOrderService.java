@@ -12,7 +12,7 @@ public interface BookOrderService {
 
     List<BookOrderDto> getAllOrders();
 
-    String confirmOrder(Integer id);
+    BookOrderDto confirmOrder(Integer id);
 
-    String cancelOrder(Integer id);
+    BookOrderDto cancelOrder(Integer id);
 }

@@ -35,14 +35,13 @@ public class UserDto {
 
     private String email;
 
-    private boolean isEnabled;
+    private Boolean enabled;
 
     @Setter(AccessLevel.NONE)
     private String password;
     private Role role;
 
     public void setPassword(String password) {
-        this.password =
-                new BCryptPasswordEncoder().encode(password);
+        this.password = new BCryptPasswordEncoder().encode(password);
     }
 }

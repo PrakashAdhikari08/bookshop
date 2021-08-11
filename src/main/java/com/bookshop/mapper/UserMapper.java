@@ -3,6 +3,9 @@ package com.bookshop.mapper;
 import com.bookshop.domain.user.User;
 import com.bookshop.dto.UserDto;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class UserMapper {
 
     public static User toEntity(UserDto userDto) {
@@ -24,6 +27,15 @@ public class UserMapper {
                 .email(user.getEmail())
                 .lastLoggedIn(user.getLastLoggedIn())
                 .lastUpdated(user.getLastUpdated())
+                .enabled(!user.getIsDisabled())
                 .build();
+    }
+
+    public static List<UserDto> toDtoList(List<User> userList) {
+        List<UserDto> userDtoList = new LinkedList<>();
+        userList.forEach(user -> {
+            userDtoList.add(toDto(user));
+        });
+        return userDtoList;
     }
 }

@@ -25,10 +25,13 @@ public class UserFavouriteServiceImpl implements UserFavouriteService {
 
     @Override
     public Boolean addToFavourite(Integer userId, Integer bookId) {
-        UserFavourite userFavourite = new UserFavourite();
-        userFavourite.setUserId(userId);
-        userFavourite.setBookId(bookId);
-        userFavouriteRepository.save(userFavourite);
+        UserFavourite userFavourite = userFavouriteRepository.getByBookIdAndUserId(bookId, userId);
+        if (userFavourite == null) {
+            userFavourite = new UserFavourite();
+            userFavourite.setUserId(userId);
+            userFavourite.setBookId(bookId);
+            userFavouriteRepository.save(userFavourite);
+        }
         return Boolean.TRUE;
     }
 

@@ -44,7 +44,7 @@ public class UserFavouriteController {
     @ApiOperation("Get All favourite books list Customer Only")
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('CUSTOMER')")
-    public ResponseEntity<String> allFavouriteBooks(@RequestParam Integer userId) {
+    public ResponseEntity<List<FavouriteBookDto>> allFavouriteBooks(@RequestParam Integer userId) {
         log.info("Favourite Books of user with user id  {}", userId);
         List<FavouriteBookDto> favouriteBookDtoList = userFavouriteService.getFavouriteBooksList(userId);
         return new ResponseEntity(favouriteBookDtoList, HttpStatus.OK);

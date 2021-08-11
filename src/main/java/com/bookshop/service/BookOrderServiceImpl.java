@@ -42,7 +42,6 @@ public class BookOrderServiceImpl implements BookOrderService {
         bookOrder.setStatus(Status.INCOMPLETE);
         bookOrderRepository.save(bookOrder);
         log.info("Order Completed");
-
         return bookOrder.getId();
 
     }
@@ -70,20 +69,20 @@ public class BookOrderServiceImpl implements BookOrderService {
     }
 
     @Override
-    public String confirmOrder(Integer id) {
+    public BookOrderDto confirmOrder(Integer id) {
         log.info("Confirm Booking Order for order id:{}", id);
         BookOrder bookOrder = bookOrderRepository.getById(id);
         bookOrder.setStatus(Status.COMPLETED);
         bookOrderRepository.save(bookOrder);
-        return Status.COMPLETED.name();
+        return BookOrderMapper.toDto(bookOrder);
     }
 
     @Override
-    public String cancelOrder(Integer id) {
+    public BookOrderDto cancelOrder(Integer id) {
         log.info("Cancel Booking Order for order id:{}", id);
         BookOrder bookOrder = bookOrderRepository.getById(id);
         bookOrder.setStatus(Status.CANCELLED);
         bookOrderRepository.save(bookOrder);
-        return Status.CANCELLED.name();
+        return BookOrderMapper.toDto(bookOrder);
     }
 }

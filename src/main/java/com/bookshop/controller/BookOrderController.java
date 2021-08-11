@@ -32,7 +32,7 @@ public class BookOrderController {
     public ResponseEntity<String> orderABook(@RequestParam Integer userId, @RequestParam Integer bookId) {
         log.info("The user id is {} and book id is {}", userId, bookId);
         Integer orderNumber = bookOrderService.orderABook(userId, bookId);
-        return new ResponseEntity("Order Made with order id -> " + orderNumber, HttpStatus.CREATED);
+        return new ResponseEntity("Successfully Order", HttpStatus.CREATED);
     }
 
     @ApiOperation("Get Book Ordered for User")
@@ -54,16 +54,16 @@ public class BookOrderController {
     @ApiOperation("Confirm Order Only for Admin Use")
     @RequestMapping(value = "/confirm-order/{id}", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<String> confirmOrder(@PathVariable Integer id) {
-        String message = bookOrderService.confirmOrder(id);
+    public ResponseEntity<BookOrderDto> confirmOrder(@PathVariable Integer id) {
+        BookOrderDto message = bookOrderService.confirmOrder(id);
         return new ResponseEntity(message, HttpStatus.OK);
     }
 
     @ApiOperation("Cancel Order Only for Admin Use")
     @RequestMapping(value = "/cancel-order/{id}", method = RequestMethod.GET)
-//    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<String> cancelOrder(@PathVariable Integer id) {
-        String message = bookOrderService.cancelOrder(id);
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<BookOrderDto> cancelOrder(@PathVariable Integer id) {
+        BookOrderDto message = bookOrderService.cancelOrder(id);
         return new ResponseEntity(message, HttpStatus.OK);
     }
 
