@@ -45,10 +45,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/configuration/security",
                         "/swagger-ui.html",
                         "/webjars/**",
-                        "/","/login","/register","/forget-password",
-                        "/books","/customers","/orders","/user-log",
-                        "/profile","/change-password","/admin-message/**",
-                        "/user-message","/favorites-books","**.**"
+                        "/", "/login", "/register", "/forget-password",
+                        "/books", "/customers", "/orders", "/user-log",
+                        "/profile", "/change-password", "/admin-message/**",
+                        "/user-message", "/favorites-books", "/assets/**"
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()
