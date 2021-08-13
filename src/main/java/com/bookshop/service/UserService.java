@@ -1,6 +1,7 @@
 package com.bookshop.service;
 
 import com.bookshop.domain.user.User;
+import com.bookshop.dto.ChangePasswordDto;
 import com.bookshop.dto.UserDto;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface UserService {
     UserDto changeStatus(Integer customerId, Boolean status);
 
     List<UserDto> fetchAllCustomer();
+
+    String changePassword(ChangePasswordDto changePasswordDto);
 }

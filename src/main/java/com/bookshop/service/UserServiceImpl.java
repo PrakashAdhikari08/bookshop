@@ -3,6 +3,7 @@ package com.bookshop.service;
 import com.bookshop.dao.UserRepository;
 import com.bookshop.domain.user.Role;
 import com.bookshop.domain.user.User;
+import com.bookshop.dto.ChangePasswordDto;
 import com.bookshop.dto.UserDto;
 import com.bookshop.exception.EmailAlreadyRegisteredException;
 import com.bookshop.mapper.UserMapper;
@@ -83,5 +84,17 @@ public class UserServiceImpl implements UserService {
         Random random = new Random();
         int number = random.nextInt(999999);
         return Integer.valueOf(String.format("%06d", number));
+    }
+
+    @Override
+    public String changePassword(ChangePasswordDto changePasswordDto) {
+        Optional<User> userOptional = userRepository.findById(changePasswordDto.getUserId());
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setPassword(changePasswordDto.getPassword());
+            userRepository.save(user);
+            return "SUCCESS";
+        }
+        return null;
     }
 }

@@ -3,6 +3,7 @@ package com.bookshop.controller;
 
 import com.bookshop.domain.user.Role;
 import com.bookshop.domain.user.User;
+import com.bookshop.dto.ChangePasswordDto;
 import com.bookshop.dto.UserDto;
 import com.bookshop.mapper.UserMapper;
 import com.bookshop.service.UserService;
@@ -69,5 +70,15 @@ public class UserController {
     public ResponseEntity<UserDto> changeCustomerAccountStatus(@PathVariable Integer customerId, @RequestParam(name = "status", required = false, defaultValue = "false") Boolean status) {
         UserDto response = userService.changeStatus(customerId, status);
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @ApiOperation("Change Password for All")
+    @RequestMapping(value = "/change-password", method = RequestMethod.PUT)
+    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
+        String message = userService.changePassword(changePasswordDto);
+        if (message == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exits.");
+        }
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 }
