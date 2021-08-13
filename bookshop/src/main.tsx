@@ -6,7 +6,6 @@ import configureStore from "./redux/store";
 import history from "./redux/history";
 import "animate.css/animate.min.css";
 import "./styles/styles.less";
-import "@Styles/bootstrap.min.css";
 import "react-notifications-component/dist/theme.css";
 import ReactNotification from "react-notifications-component";
 import App from "./App";
