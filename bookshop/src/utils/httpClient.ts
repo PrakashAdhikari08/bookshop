@@ -11,7 +11,6 @@ const http = axios.create({
 const getHeaders = (secure: boolean) => {
   let headerOptions = {
     Authorization: "",
-    "Content-Type": "application/json",
   };
   if (secure) {
     headerOptions["Authorization"] = `Bearer ${localStorage.getItem(

@@ -74,9 +74,9 @@ const LoginForm: React.FC = () => {
             <div style={{ marginTop: "4px" }}>
               <span style={{ color: "black", marginRight: "5px" }}> Or </span>
               <Link to="/register">register your Account!</Link>
-              <Link className="login-form-forgot" to="/forget-password">
+              {/* <Link className="login-form-forgot" to="/forget-password">
                 Forgot password
-              </Link>
+              </Link> */}
             </div>
           </Form.Item>
         </Form>

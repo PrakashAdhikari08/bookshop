@@ -8,6 +8,7 @@ import com.bookshop.dto.UserDto;
 import com.bookshop.exception.EmailAlreadyRegisteredException;
 import com.bookshop.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -91,7 +92,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> userOptional = userRepository.findById(changePasswordDto.getUserId());
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            if (!user.getPassword().equals(changePasswordDto.getOldPassword())) {
+            if (!new BCryptPasswordEncoder().matches(changePasswordDto.getOldPassword(),user.getPassword())) {
                 return "NO_MATCH_PASSWORD";
             }
             user.setPassword(changePasswordDto.getPassword());

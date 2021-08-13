@@ -22,7 +22,6 @@ const BookOpenApi: React.FC = () => {
         }`
       )
       .then((data) => {
-        console.log(data.data.books);
         setBook(data.data.books);
       })
       .catch((err) => {

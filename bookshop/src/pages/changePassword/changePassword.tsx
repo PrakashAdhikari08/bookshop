@@ -1,13 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
+import passAction from "@Redux/changePassword/password.action";
+import {useDispatch, useSelector} from "react-redux";
 import {Button, Col, Form, Input, Row, Typography} from "antd";
 import {LockOutlined} from "@ant-design/icons";
+import {RootState} from "@Redux/rootReducer";
 
 const { Title } = Typography;
 const ChangePassword: React.FC = () => {
+  const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const onFinish = () => {
-    form.resetFields();
+  // @ts-ignore
+  const { id } = useSelector((state: RootState) => state.auth.userData);
+  const { resetForm, loading } = useSelector(
+    (state: RootState) => state.passReducer
+  );
+  const onFinish = (value: any) => {
+    dispatch(passAction.changePassRequest({ ...value, userId: id }));
   };
+
+  useEffect(() => {
+    if (resetForm) {
+      form.resetFields();
+    }
+  }, [resetForm]);
 
   return (
     <Row justify="center">
@@ -23,51 +38,14 @@ const ChangePassword: React.FC = () => {
           padding: "30px",
           marginTop: " 100px",
           borderRadius: "10px",
-          //   textAlign: "center",
-          //   width: "100%",
         }}
       >
         <Title level={4} style={{ textAlign: "center" }}>
           Change Password
         </Title>
         <Form name="changePassword" form={form} onFinish={onFinish}>
-          {/* <Form.Item
-            name="password"
-            label="Old Password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your Password!",
-              },
-            ]}
-          >
-            <Input.Password
-              size="large"
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              name="password"
-              placeholder="Old Password"
-            />
-          </Form.Item> */}
           <Form.Item
             name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please input your Password!",
-              },
-            ]}
-          >
-            <Input.Password
-              size="large"
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              name="password"
-              placeholder="Old Password"
-            />
-          </Form.Item>
-          <Form.Item
-            name="newpassword"
             rules={[
               {
                 required: true,
@@ -100,7 +78,7 @@ const ChangePassword: React.FC = () => {
 
               ({ getFieldValue }) => ({
                 validator(rule, value) {
-                  if (!value || getFieldValue("newpassword") === value) {
+                  if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
                   return Promise.reject("Password not match!");
@@ -115,12 +93,29 @@ const ChangePassword: React.FC = () => {
               placeholder="Confirm Password"
             />
           </Form.Item>
+          <Form.Item
+            name="oldPassword"
+            rules={[
+              {
+                required: true,
+                message: "Please input your Password!",
+              },
+            ]}
+          >
+            <Input.Password
+              size="large"
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              name="password"
+              placeholder="Old Password"
+            />
+          </Form.Item>
           <Form.Item>
             <Button
               type="primary"
               htmlType="submit"
               block
-              //   loading={props.update_btn}
+              loading={loading}
               className="login-form-button"
             >
               Change Password

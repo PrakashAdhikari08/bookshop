@@ -10,6 +10,7 @@ import favouriteBook from "./favourite/favourite.reducer";
 import userlog from "./userlog/userlog.reducer";
 import customerReducer from "./Customer/customer.reducer";
 import messageReducer from "./messages/message.reducer";
+import passReducer from "./changePassword/password.reducer";
 
 const rootReducer = combineReducers({
   router: connectRouter(history),
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   userlog,
   customerReducer,
   messageReducer,
+  passReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
