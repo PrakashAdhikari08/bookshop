@@ -132,7 +132,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run build:release</arguments>
+                            <arguments>run build</arguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -147,7 +147,7 @@
                         <configuration>
                             <target>
                                 <copy todir="${project.basedir}\src\main\resources\templates">
-                                    <fileset dir="${project.basedir}\bookshop\dist" />
+                                    <fileset dir="${project.basedir}\bookshop\build" />
                                 </copy>
                             </target>
                         </configuration>

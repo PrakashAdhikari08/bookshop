@@ -2,11 +2,11 @@ import {Button, Col, Input, Row, Typography} from "antd";
 import React, {useEffect, useState} from "react";
 import {AiOutlineSend} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "@Redux/rootReducer";
-import customerAction from "@Redux/Customer/customer.action";
-import messageAction from "@Redux/messages/message.action";
+import {RootState} from "src/redux/rootReducer";
+import customerAction from "src/redux/Customer/customer.action";
+import messageAction from "src/redux/messages/message.action";
 import {NavLink, useParams} from "react-router-dom";
-import {GridContainers} from "@Styles/globalStyle";
+import {GridContainers} from "src/styles/globalStyle";
 
 const { Title } = Typography;
 

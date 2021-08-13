@@ -1,12 +1,13 @@
 import React from "react";
-import {Col, Input, Row} from "antd";
-import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {BiSearch} from "react-icons/bi";
+import { Input, Row, Col } from "antd";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { BiSearch } from "react-icons/bi";
+import { Menu } from "antd";
 
-import {Div} from "./search.style";
-import {RootState} from "@Redux/rootReducer";
-import {Popover} from "@Components/popup/popup.component";
+import { Div } from "./search.style";
+import { RootState } from "src/redux/rootReducer";
+import { Popover } from "src/components/popup/popup.component";
 
 const Search: React.FC = () => {
   const darkMode = useSelector(

@@ -1,10 +1,11 @@
-import {Button, Col, Input, Row, Typography} from "antd";
-import React, {useEffect, useState} from "react";
-import {AiOutlineSend} from "react-icons/ai";
-import {useDispatch, useSelector} from "react-redux";
-import messageAction from "@Redux/messages/message.action";
-import {RootState} from "@Redux/rootReducer";
-
+import { Row, Col, Button } from "antd";
+import React, { useState, useEffect } from "react";
+import { Input } from "antd";
+import { AiOutlineSend } from "react-icons/ai";
+import { Typography } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import messageAction from "src/redux/messages/message.action";
+import { RootState } from "src/redux/rootReducer";
 const { Title } = Typography;
 
 const UserMessagePage: React.FC = () => {

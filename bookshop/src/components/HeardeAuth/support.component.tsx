@@ -1,10 +1,9 @@
 import React from "react";
-import {FiHelpCircle} from "react-icons/fi";
-import {Link} from "react-router-dom";
-import {NestedDropdwon} from "./auth-info.style";
-import {Popover} from "@Components/popup/popup.component";
-import Heading from "@Components/Heading/Heading.component";
-
+import { FiHelpCircle } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { NestedDropdwon } from "./auth-info.style";
+import { Popover } from "src/components/popup/popup.component";
+import Heading from "src/components/Heading/Heading.component";
 const Support: React.FC = () => {
   const content = (
     <NestedDropdwon>

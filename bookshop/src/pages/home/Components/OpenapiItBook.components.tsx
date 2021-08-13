@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Col, Input, Row, Typography} from "antd";
-import OpenApiBookCard from "@Components/BookCard/OpenApiBookCard.components";
+import OpenApiBookCard from "src/components/BookCard/OpenApiBookCard.components";
 import axios from "axios";
 
 const { Search } = Input;

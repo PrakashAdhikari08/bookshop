@@ -33,3 +33,5 @@ build/
 .vscode/
 /src/main/resources/templates/**
 /bookshop/node/
+/bookshop/build/
+/bookshop/node_modules/

@@ -1,4 +1,4 @@
-import httpClient from "@Utils/httpClient";
+import httpClient from "src/utils/httpClient";
 
 const addFavourite = (userId: number, bookId: number) =>
   httpClient.GET("/favourite/add", true, { userId: userId, bookId: bookId });

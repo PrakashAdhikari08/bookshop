@@ -1,4 +1,4 @@
-import notifications from "@Utils/notifications";
+import notifications from "src/utils/notifications";
 import {call, put, takeLatest} from "redux-saga/effects";
 import favAction, {Types} from "./favourite.action";
 import favService from "./favourite.service";

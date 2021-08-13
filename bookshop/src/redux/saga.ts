@@ -1,4 +1,4 @@
-import {all} from "redux-saga/effects";
+import { all } from "redux-saga/effects";
 import authWatcher from "./auth/auth.saga";
 import bookWatcher from "./books/book.saga";
 import passWatch from "./changePassword/password.saga";

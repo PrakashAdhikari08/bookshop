@@ -4,13 +4,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {AiOutlineAlignLeft, AiOutlineAlignRight} from "react-icons/ai";
 import {Scrollbars} from "react-custom-scrollbars-2";
 import {Link, useHistory} from "react-router-dom";
-import {RootState} from "@Redux/rootReducer";
+import {RootState} from "src/redux/rootReducer";
 import {Div} from "./protectedLayout.styles";
-import themeAction from "@Redux/changelayout/changelayout.action";
-import Logo from "@Components/logo/logo";
-import AuthInfo from "@Components/HeardeAuth/AuthInfo.component";
+import themeAction from "src/redux/changelayout/changelayout.action";
+import Logo from "src/components/logo/logo";
+import AuthInfo from "src/components/HeardeAuth/AuthInfo.component";
 
-import SideMenu from "@Components/SideMenu/sidemenu.component";
+import SideMenu from "src/components/SideMenu/sidemenu.component";
 
 const { Header, Footer, Sider, Content } = Layout;
 

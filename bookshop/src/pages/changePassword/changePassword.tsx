@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
-import passAction from "@Redux/changePassword/password.action";
+import passAction from "src/redux/changePassword/password.action";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Col, Form, Input, Row, Typography} from "antd";
 import {LockOutlined} from "@ant-design/icons";
-import {RootState} from "@Redux/rootReducer";
+import {RootState} from "src/redux/rootReducer";
 
 const { Title } = Typography;
 const ChangePassword: React.FC = () => {

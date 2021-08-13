@@ -2,7 +2,7 @@ import {call, put, takeLatest} from "redux-saga/effects";
 import orderService from "./order.service";
 import orderAction, {Types} from "./order.action";
 import {ResponseGeneratorOrder} from "./interface";
-import notifications from "@Utils/notifications";
+import notifications from "src/utils/notifications";
 
 export function* orderBook(action: any) {
   try {

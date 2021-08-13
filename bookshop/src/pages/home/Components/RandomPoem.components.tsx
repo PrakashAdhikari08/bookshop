@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import {Col, Row} from "antd";
-import PoemContiner from "@Components/PoemContainer/PoemContainer";
+import PoemContiner from "src/components/PoemContainer/PoemContainer";
 
 const RandomPoem: React.FC = () => {
   const [poem, setPoem] = useState<any[]>([]);

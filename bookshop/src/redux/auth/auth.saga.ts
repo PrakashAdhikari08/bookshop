@@ -1,4 +1,4 @@
-import notifications from "@Utils/notifications";
+import notifications from "src/utils/notifications";
 import {call, put, takeLatest} from "redux-saga/effects";
 import authAction, {Types} from "./auth.action";
 import authService from "./auth.service";

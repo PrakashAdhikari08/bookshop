@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
 import {Col, Row} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import BookCard from "@Components/BookCard/BookCard.components";
-import bookAction from "@Redux/books/book.action";
-import {RootState} from "@Redux/rootReducer";
+import BookCard from "src/components/BookCard/BookCard.components";
+import bookAction from "src/redux/books/book.action";
+import {RootState} from "src/redux/rootReducer";
 
 const BookBlock: React.FC = () => {
   const dispatch = useDispatch();

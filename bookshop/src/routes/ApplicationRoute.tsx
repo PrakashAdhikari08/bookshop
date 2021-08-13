@@ -1,9 +1,9 @@
 import React from "react";
 import {Switch} from "react-router-dom";
 import PublicRoute from "./PublicRoutes";
-import LogInPage from "@Pages/login/loginpage";
-import RegisterPage from "@Pages/register/register";
-import Home from "@Pages/home/home";
+import LogInPage from "src/pages/login/loginpage";
+import RegisterPage from "src/pages/register/register";
+import Home from "src/pages/home/home";
 
 const ApplicationRoute = () => {
   return (

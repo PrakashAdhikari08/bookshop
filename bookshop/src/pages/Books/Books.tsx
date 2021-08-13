@@ -4,8 +4,8 @@ import {Button, Modal, Popconfirm, Typography} from "antd";
 import {DeleteOutlined, QuestionCircleOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
 import BookForm from "./components/BookForm.components";
-import bookAction from "@Redux/books/book.action";
-import {RootState} from "@Redux/rootReducer";
+import bookAction from "src/redux/books/book.action";
+import {RootState} from "src/redux/rootReducer";
 
 const TableContent = styled.div`
   padding: 70px 50px;

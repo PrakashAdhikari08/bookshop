@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/", "/login", "/register", "/forget-password",
                         "/books", "/customers", "/orders", "/user-log",
                         "/profile", "/change-password", "/admin-message/**",
-                        "/user-message", "/favorites-books", "/assets/**"
+                        "/user-message", "/favorites-books", "/static/**","/manifest.json","/favicon.ico","/**.png"
                 ).permitAll()
                 .anyRequest().authenticated()
                 .and()

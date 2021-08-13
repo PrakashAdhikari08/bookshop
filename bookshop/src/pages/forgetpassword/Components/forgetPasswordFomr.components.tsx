@@ -2,7 +2,7 @@ import React from "react";
 import {Button, Col, Form, Input, Row} from "antd";
 import {ArrowLeftOutlined, MailOutlined} from "@ant-design/icons";
 
-import {LogInText} from "@Pages/login/styles/loginpage.style";
+import {LogInText} from "src/pages/login/styles/loginpage.style";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 

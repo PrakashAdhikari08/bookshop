@@ -1,4 +1,4 @@
-import httpClient from "@Utils/httpClient";
+import httpClient from "src/utils/httpClient";
 
 const sendMessage = (message: any) =>
   httpClient.POST("/message/send", message, true);

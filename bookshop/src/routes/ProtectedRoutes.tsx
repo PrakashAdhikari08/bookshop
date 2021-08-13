@@ -2,7 +2,7 @@ import React from "react";
 import {Redirect, Route, RouteProps} from "react-router-dom";
 import {useSelector} from "react-redux";
 import ProtectedLayouts from "./../layouts/ProtectedLayouts";
-import {RootState} from "@Redux/rootReducer";
+import {RootState} from "src/redux/rootReducer";
 
 export interface ProtectedRouteProps extends RouteProps {
   component: React.ComponentType<RouteProps>;

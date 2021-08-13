@@ -1,5 +1,5 @@
-import {applyMiddleware, compose, createStore} from "redux";
-import {routerMiddleware} from "connected-react-router";
+import { applyMiddleware, compose, createStore } from "redux";
+import { routerMiddleware } from "connected-react-router";
 import createMiddleware from "redux-saga";
 import history from "./history";
 import rootReducer from "./rootReducer";
@@ -16,7 +16,7 @@ const sagaMiddleware = createMiddleware();
 
 export default function configureStore() {
   const middleware = [sagaMiddleware, routerMiddleware(history)];
-  const ENV = import.meta.env.MODE;
+  const ENV = process.env.NODE_ENV;
   let composeEnhancer = compose;
   if (ENV !== "production") {
     const composeWithDevToolsExtension =

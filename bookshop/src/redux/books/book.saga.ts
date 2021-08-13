@@ -1,4 +1,4 @@
-import notifications from "@Utils/notifications";
+import notifications from "src/utils/notifications";
 import {call, put, takeLatest} from "redux-saga/effects";
 import bookAction, {Types} from "./book.action";
 import bookService from "./book.service";
@@ -16,9 +16,10 @@ export function* fetchBooks(action: any) {
   }
 }
 
-export function* addBooks(action: any) {
-  const { payload } = action;
+export function* addBooksFunction(action: any) {
   try {
+    const { payload } = action;
+
     yield put(bookAction.addBookState(true));
     const response: ResponseGenerator = yield call(
       bookService.addBook,
@@ -54,8 +55,8 @@ export function* deleteBook(action: any) {
 
 function* bookWatcher() {
   yield takeLatest(Types.FETCH_BOOKS_REQUEST, fetchBooks);
-  yield takeLatest(Types.ADD_BOOK_REQUEST, addBooks),
-    yield takeLatest(Types.DELETE_BOOKS_REQUEST, deleteBook);
+  yield takeLatest(Types.ADD_BOOK_REQUEST, addBooksFunction);
+  yield takeLatest(Types.DELETE_BOOKS_REQUEST, deleteBook);
 }
 
 export default bookWatcher;

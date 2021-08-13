@@ -3,9 +3,9 @@ import {Alert, Button, Col, Form, Input, Row} from "antd";
 import {Link, useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
-import authAction from "@Redux/auth/auth.action";
-import {RootState} from "@Redux/rootReducer";
-import {LogInText} from "@Pages/login/styles/loginpage.style";
+import authAction from "src/redux/auth/auth.action";
+import {RootState} from "src/redux/rootReducer";
+import {LogInText} from "src/pages/login/styles/loginpage.style";
 
 const LoginForm: React.FC = () => {
   const history = useHistory();

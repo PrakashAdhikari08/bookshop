@@ -4,8 +4,8 @@ import moment from "moment";
 import {ImageContainer} from "./styles/Profile.styles";
 import {UserOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
-import authAction from "@Redux/auth/auth.action";
-import {RootState} from "@Redux/rootReducer";
+import authAction from "src/redux/auth/auth.action";
+import {RootState} from "src/redux/rootReducer";
 
 const Profile: React.FC = () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import {call, put, takeLatest} from "redux-saga/effects";
 import messageAction, {Types} from "./message.action";
 import service from "./message.service";
 import {ResponseGenerator, ResponseMessage} from "./interface";
-import notifications from "@Utils/notifications";
+import notifications from "src/utils/notifications";
 
 export function* fetchMessage(action: any) {
   try {

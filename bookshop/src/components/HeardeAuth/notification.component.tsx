@@ -3,8 +3,8 @@ import {Avatar, Badge} from "antd";
 import {Link} from "react-router-dom";
 import {Scrollbars} from "react-custom-scrollbars-2";
 import {AtbdTopDropdwon} from "./auth-info.style";
-import {Popover} from "@Components/popup/popup.component";
-import Heading from "@Components/Heading/Heading.component";
+import {Popover} from "src/components/popup/popup.component";
+import Heading from "src/components/Heading/Heading.component";
 import {FiBell} from "react-icons/fi";
 import {UserOutlined} from "@ant-design/icons";
 

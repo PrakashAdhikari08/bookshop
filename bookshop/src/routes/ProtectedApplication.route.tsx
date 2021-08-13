@@ -1,17 +1,17 @@
 import React from "react";
 import {Switch} from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoutes";
-import Profile from "@Pages/Profile/inedx";
-import ChangePassword from "@Pages/changePassword/changePassword";
-import FavoritesBooks from "@Pages/favoritesbooks/favoritesbooks";
-import Customer from "@Pages/customer/customer";
-import Orders from "@Pages/Orders/orders";
-import BooksPage from "@Pages/Books/Books";
-import userLogPage from "@Pages/userLog/userlog.page";
+import Profile from "src/pages/Profile/inedx";
+import ChangePassword from "src/pages/changePassword/changePassword";
+import FavoritesBooks from "src/pages/favoritesbooks/favoritesbooks";
+import Customer from "src/pages/customer/customer";
+import Orders from "src/pages/Orders/orders";
+import BooksPage from "src/pages/Books/Books";
+import userLogPage from "src/pages/userLog/userlog.page";
 import {useSelector} from "react-redux";
-import {RootState} from "@Redux/rootReducer";
-import AdminMessagePage from "@Pages/message/adminMessage";
-import UserMessagePage from "@Pages/message/userMessagePage";
+import {RootState} from "src/redux/rootReducer";
+import AdminMessagePage from "src/pages/message/adminMessage";
+import UserMessagePage from "src/pages/message/userMessagePage";
 
 const ProtetedApplicationRoute = () => {
   // @ts-ignore

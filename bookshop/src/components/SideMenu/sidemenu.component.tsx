@@ -1,12 +1,12 @@
 import React from "react";
-import {Menu} from "antd";
-import {NavLink, useHistory} from "react-router-dom";
-import {HeartFilled, ProfileOutlined, UserOutlined} from "@ant-design/icons";
-import {ImBooks} from "react-icons/im";
-import {BiUserPin} from "react-icons/bi";
-import {useSelector} from "react-redux";
-import {RootState} from "@Redux/rootReducer";
-import {AiOutlineMessage} from "react-icons/ai";
+import { Menu } from "antd";
+import { NavLink, useHistory } from "react-router-dom";
+import { ProfileOutlined, HeartFilled, UserOutlined } from "@ant-design/icons";
+import { ImBooks } from "react-icons/im";
+import { BiUserPin } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { RootState } from "src/redux/rootReducer";
+import { AiOutlineMessage } from "react-icons/ai";
 
 // const { SubMenu } = Menu;
 

@@ -1,8 +1,8 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import {RootState} from "@Redux/rootReducer";
-import LightLogo from "@Assets/logo-light.png";
-import DarkLogo from "@Assets/logo-dark.png";
+import {RootState} from "src/redux/rootReducer";
+import LightLogo from "src/assets/logo-light.png";
+import DarkLogo from "src/assets/logo-dark.png";
 
 interface LogoProps {
   className: string;

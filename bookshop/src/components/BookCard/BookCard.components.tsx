@@ -4,10 +4,10 @@ import {Button, Card} from "antd";
 import {HeartOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import {AuthorName, BookDescription, BookName, BookPrice,} from "./BookCard.styles";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "@Redux/rootReducer";
-import ModalAction from "@Redux/LoginModal/LoginModal.action";
-import orderAction from "@Redux/order/order.action";
-import favAction from "@Redux/favourite/favourite.action";
+import {RootState} from "src/redux/rootReducer";
+import ModalAction from "src/redux/LoginModal/LoginModal.action";
+import orderAction from "src/redux/order/order.action";
+import favAction from "src/redux/favourite/favourite.action";
 
 interface bookProps {
   book: {

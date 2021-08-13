@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BaseURL = `${import.meta.env.VITE_APP_BASE_URL}`;
+const BaseURL = process.env.REACT_APP_BASE_URL;
 
 const http = axios.create({
   baseURL: BaseURL,

@@ -3,10 +3,10 @@ import React from "react";
 import {Alert, Button, Form, Input, Modal} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
-import authAction from "@Redux/auth/auth.action";
-import {RootState} from "@Redux/rootReducer";
-import {LogInText} from "@Pages/login/styles/loginpage.style";
-import ModalAction from "@Redux/LoginModal/LoginModal.action";
+import authAction from "src/redux/auth/auth.action";
+import {RootState} from "src/redux/rootReducer";
+import {LogInText} from "src/pages/login/styles/loginpage.style";
+import ModalAction from "src/redux/LoginModal/LoginModal.action";
 
 const LogInModal: React.FC = () => {
   const dispatch = useDispatch();

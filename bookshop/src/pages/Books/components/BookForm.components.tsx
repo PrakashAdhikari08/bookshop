@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import {Button, Form, Input, InputNumber} from "antd";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "@Redux/rootReducer";
-import bookAction from "@Redux/books/book.action";
+import {RootState} from "src/redux/rootReducer";
+import bookAction from "src/redux/books/book.action";
 
 const BookForm = () => {
   const dispatch = useDispatch();

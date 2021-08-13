@@ -1,4 +1,4 @@
-import httpClient from "@Utils/httpClient";
+import httpClient from "src/utils/httpClient";
 
 const addOrder = (order: any) => httpClient.GET("/order/book", true, order);
 const fetchBookByAdmin = () => httpClient.GET("/order/book/all", true, {});

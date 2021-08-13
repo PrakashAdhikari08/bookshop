@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import service from "./password.service";
 import passAction, {Types} from "./password.action";
-import notifications from "@Utils/notifications";
+import notifications from "src/utils/notifications";
 
 export function* changePasswordFunction(action: any) {
   try {

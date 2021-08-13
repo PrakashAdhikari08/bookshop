@@ -2,8 +2,8 @@ import React, {useEffect} from "react";
 import {Typography} from "antd";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import favAction from "@Redux/favourite/favourite.action";
-import {RootState} from "@Redux/rootReducer";
+import favAction from "src/redux/favourite/favourite.action";
+import {RootState} from "src/redux/rootReducer";
 
 const TableContent = styled.div`
   padding: 70px 50px;

@@ -1,16 +1,16 @@
 import React from "react";
 import {Avatar, Switch} from "antd";
 import {Link, useHistory} from "react-router-dom";
-import Heading from "@Components/Heading/Heading.component";
+import Heading from "src/components/Heading/Heading.component";
 import {FiUser} from "react-icons/fi";
 import {VscSignOut} from "react-icons/vsc";
 import {IoMdSettings} from "react-icons/io";
 import {UserDropDwon} from "./auth-info.style";
-import {Popover} from "@Components/popup/popup.component";
+import {Popover} from "src/components/popup/popup.component";
 import {useDispatch, useSelector} from "react-redux";
-import themeAction from "@Redux/changelayout/changelayout.action";
-import {RootState} from "@Redux/rootReducer";
-import authAction from "@Redux/auth/auth.action";
+import themeAction from "src/redux/changelayout/changelayout.action";
+import {RootState} from "src/redux/rootReducer";
+import authAction from "src/redux/auth/auth.action";
 
 const AuthUser: React.FC = () => {
   const history = useHistory();

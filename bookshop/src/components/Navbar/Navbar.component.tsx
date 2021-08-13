@@ -1,11 +1,11 @@
 import React from "react";
 import {Navbar, WrapperNav} from "./navbar.styles";
-import {Container} from "@Styles/globalStyle";
+import {Container} from "src/styles/globalStyle";
 import {useDispatch, useSelector} from "react-redux";
 import {HeartFilled, UserOutlined} from "@ant-design/icons";
 import {Link, useHistory} from "react-router-dom";
-import {RootState} from "@Redux/rootReducer";
-import ModalAction from "@Redux/LoginModal/LoginModal.action";
+import {RootState} from "src/redux/rootReducer";
+import ModalAction from "src/redux/LoginModal/LoginModal.action";
 
 interface authPage {
   authPage?: boolean;

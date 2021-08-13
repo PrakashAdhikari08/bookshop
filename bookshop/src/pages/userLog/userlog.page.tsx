@@ -1,17 +1,17 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
-import logAction from "@Redux/userlog/userlog.action";
+import { useSelector, useDispatch } from "react-redux";
+import logAction from "src/redux/userlog/userlog.action";
 
-import {Typography} from "antd";
-import {RootState} from "@Redux/rootReducer";
+import { Typography } from "antd";
+import { RootState } from "src/redux/rootReducer";
 
 const TableContent = styled.div`
   padding: 70px 50px 30px 50px;
 `;
 
 const { Title } = Typography;
-const userLogPage: React.FC = () => {
+const UserLogPage: React.FC = () => {
   const dispatch = useDispatch();
   const { adminLog, userLog } = useSelector(
     (state: RootState) => state.userlog
@@ -82,4 +82,4 @@ const userLogPage: React.FC = () => {
   );
 };
 
-export default userLogPage;
+export default UserLogPage;

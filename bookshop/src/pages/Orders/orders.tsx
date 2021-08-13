@@ -3,8 +3,8 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {Popconfirm, Typography} from "antd";
 import {QuestionCircleOutlined} from "@ant-design/icons";
-import {RootState} from "@Redux/rootReducer";
-import orderAction from "@Redux/order/order.action";
+import {RootState} from "src/redux/rootReducer";
+import orderAction from "src/redux/order/order.action";
 import {ImCancelCircle} from "react-icons/im";
 import {BiSelectMultiple} from "react-icons/bi";
 

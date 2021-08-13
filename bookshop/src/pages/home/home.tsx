@@ -1,5 +1,5 @@
-import MainPageNav from "@Components/Navbar/Navbar.component";
-import {Container} from "@Styles/globalStyle";
+import MainPageNav from "src/components/Navbar/Navbar.component";
+import {Container} from "src/styles/globalStyle";
 import React from "react";
 import BookBlock from "./Components/BookBlock.components";
 import BookOpenApi from "./Components/OpenapiItBook.components";

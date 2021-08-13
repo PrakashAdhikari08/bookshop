@@ -2,8 +2,8 @@ import React, {useEffect} from "react";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {Switch, Typography} from "antd";
-import {RootState} from "@Redux/rootReducer";
-import customerAction from "@Redux/Customer/customer.action";
+import {RootState} from "src/redux/rootReducer";
+import customerAction from "src/redux/Customer/customer.action";
 
 const TableContent = styled.div`
   padding: 70px 50px;

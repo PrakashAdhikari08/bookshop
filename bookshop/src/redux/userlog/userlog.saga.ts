@@ -1,7 +1,7 @@
-import {call, put, takeLatest} from "redux-saga/effects";
-import logAction, {Types} from "./userlog.action";
+import { put, call, takeLatest } from "redux-saga/effects";
+import logAction, { Types } from "./userlog.action";
 import logService from "./userlog.service";
-import {ResponseGenerator} from "./interfacr";
+import { ResponseGenerator } from "./interfacr";
 
 export function* fetchAdminlog(action: any) {
   try {

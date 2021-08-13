@@ -1,4 +1,4 @@
-import notifications from "@Utils/notifications";
+import notifications from "src/utils/notifications";
 import {createReducer} from "reduxsauce";
 import {Types} from "./order.action";
 

@@ -2,10 +2,10 @@ import React, {useState} from "react";
 import {AutoComplete, Button, Col, DatePicker, Form, Input, Radio, Row} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useHistory} from "react-router-dom";
-import {LogInText} from "@Pages/login/styles/loginpage.style";
+import {LogInText} from "src/pages/login/styles/loginpage.style";
 import {LockOutlined} from "@ant-design/icons";
-import authAction from "@Redux/auth/auth.action";
-import {RootState} from "@Redux/rootReducer";
+import authAction from "src/redux/auth/auth.action";
+import {RootState} from "src/redux/rootReducer";
 import moment from "moment";
 
 const Profile: React.FC = () => {

@@ -1,5 +1,5 @@
-import {createReducer} from "reduxsauce";
-import {Types} from "./userlog.action";
+import { createReducer } from "reduxsauce";
+import { Types } from "./userlog.action";
 
 const intitalState = {
   adminLog: [],
