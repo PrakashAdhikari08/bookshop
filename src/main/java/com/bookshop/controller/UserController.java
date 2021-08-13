@@ -77,7 +77,9 @@ public class UserController {
     public ResponseEntity<String> changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
         String message = userService.changePassword(changePasswordDto);
         if (message == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exits.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exits!!!");
+        } else if (message.equals("NO_MATCH_PASSWORD")) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password does not match!!!");
         }
         return new ResponseEntity<>(message, HttpStatus.OK);
     }

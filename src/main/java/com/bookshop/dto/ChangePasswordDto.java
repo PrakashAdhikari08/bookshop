@@ -11,10 +11,15 @@ public class ChangePasswordDto {
     private Integer userId;
     @Setter(AccessLevel.NONE)
     private String password;
-    private String confirmPassword;
+    @Setter(AccessLevel.NONE)
+    private String oldPassword;
 
     public void setPassword(String password) {
         this.password = new BCryptPasswordEncoder().encode(password);
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = new BCryptPasswordEncoder().encode(oldPassword);
     }
 
 }

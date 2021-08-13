@@ -91,6 +91,9 @@ public class UserServiceImpl implements UserService {
         Optional<User> userOptional = userRepository.findById(changePasswordDto.getUserId());
         if (userOptional.isPresent()) {
             User user = userOptional.get();
+            if (!user.getPassword().equals(changePasswordDto.getOldPassword())) {
+                return "NO_MATCH_PASSWORD";
+            }
             user.setPassword(changePasswordDto.getPassword());
             userRepository.save(user);
             return "SUCCESS";
